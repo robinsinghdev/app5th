@@ -25950,6 +25950,10 @@ page-task-details .mob-comment-list .user-block {
   margin: 0;
 }
 
+page-tasks ion-content {
+  background: #e3e6e7 !important;
+}
+
 page-tasks .mob-task-list {
   background: #e3e6e7;
   list-style: none;
@@ -26052,11 +26056,11 @@ page-tasks .mob-task-list .task-users-list .assigned-user, page-tasks .mob-task-
 }
 
 page-tasks .mob-task-list .task-users-list .assigned-user {
-  width: 80%;
+  width: 68%;
 }
 
 page-tasks .mob-task-list .task-users-list .assigned-by {
-  width: 18%;
+  width: 30%;
 }
 
 page-tasks .mob-task-list .user-block {
