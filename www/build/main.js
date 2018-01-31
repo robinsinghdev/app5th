@@ -453,7 +453,7 @@ var AppModule = (function () {
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 var environment = {
-    apiUrl: 'http://192.168.1.28:8080/Feedback',
+    apiUrl: 'http://misdesk.com/FeedbackApp',
     production: false
 };
 //# sourceMappingURL=environment.js.map
