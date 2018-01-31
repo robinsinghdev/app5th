@@ -36,12 +36,12 @@ var FeedbackPage = (function () {
         var clientComUserSession = this.getUserSession();
         var cuid = clientComUserSession.idUsers;
         this.feedbackDataServiceProvider.getAllFeedbackByCuid(cuid).subscribe(function (data) {
-            console.log(data);
+            // console.log(data);
             _this.feedbackUiformList = data;
         });
     }
     FeedbackPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad FeedbackPage');
+        // console.log('ionViewDidLoad FeedbackPage');
     };
     FeedbackPage.prototype.getUserSession = function () {
         var currentUser = localStorage.getItem('currentUser');
@@ -153,23 +153,23 @@ var HomePage = (function () {
     HomePage.prototype.verifyAndShow = function () {
         var _this = this;
         this.sessionAvailable = this.checkUserSession();
-        console.log(this.sessionAvailable + ' -----this.sessionAvailable');
+        // console.log(this.sessionAvailable + ' -----this.sessionAvailable');
         if (this.sessionAvailable) {
             var clientComUserSession_1 = this.getUserSession();
             var phonesessionTemp = clientComUserSession_1.phone;
-            console.log('-- phonesessionTemp --- ' + phonesessionTemp);
+            // console.log('-- phonesessionTemp --- ' + phonesessionTemp);
             this.feedbackDataServiceProvider.getUserByPhone(phonesessionTemp).subscribe(function (data) {
-                console.log(data);
+                // console.log(data);
                 var ccUserByPhoneObj = data;
-                console.log('is activeeeee -- ' + ccUserByPhoneObj.isActive);
+                // console.log('is activeeeee -- ' + ccUserByPhoneObj.isActive);
                 _this.isActiveUserStatus = ccUserByPhoneObj.isActive;
-                console.log('is activeeeee -- ' + _this.isActiveUserStatus);
+                // console.log('is activeeeee -- ' + this.isActiveUserStatus);
                 if (_this.isActiveUserStatus === 1) {
-                    console.log('is activeeeee -- ');
+                    // console.log('is activeeeee -- ');
                     var cuid = clientComUserSession_1.idUsers;
-                    console.log('is cuid -- ' + cuid);
+                    // console.log('is cuid -- ' + cuid);            
                     _this.feedbackDataServiceProvider.getAllFeedbackMasterList().subscribe(function (data) {
-                        console.log("feedbackMasterList -- " + data);
+                        // console.log( "feedbackMasterList -- "  + data);
                         _this.feedbackMasterList = data;
                     });
                     // this.feedbackDataServiceProvider.getAllFeedbackByCuid(cuid).subscribe(data => {
@@ -181,30 +181,30 @@ var HomePage = (function () {
         }
         else {
             this.feedbackDataServiceProvider.getAllCountryCodes().subscribe(function (data) {
-                console.log(data);
+                // console.log(data);
                 _this.countryCodesList = data;
             });
         }
     };
     HomePage.prototype.saveClientCompanyFormFn = function () {
-        console.log('on saveClientCompanyFormFn ');
+        // console.log('on saveClientCompanyFormFn ');
         // this.feedbackDataServiceProvider.saveClientCompanyUser(this.clientCompanyUser).subscribe(data => {
         //   console.log(data);
         // });
     };
     HomePage.prototype.onSumbitClientCompanyUserForm = function () {
-        var _this = this;
         // this.clientCompanyUser.country.idCountries = this.idCountries;
-        console.log('on submit ');
-        console.log('on submit ' + this.clientCompanyUser + JSON.stringify(this.clientCompanyUser));
+        // console.log('on submit ');
+        // console.log('on submit ' + this.clientCompanyUser + JSON.stringify(this.clientCompanyUser) );
+        var _this = this;
         if (this.clientCompanyUser.username !== ''
             && this.clientCompanyUser.country !== null
             && this.clientCompanyUser.phone.length === 10
             && this.clientCompanyUser.email !== ''
             && this.clientCompanyUser.clientCompanyName !== '') {
-            console.log('submittingggggggg');
+            // console.log('submittingggggggg');
             this.feedbackDataServiceProvider.saveClientCompanyUser(this.clientCompanyUser).subscribe(function (data) {
-                console.log(data);
+                // console.log(data);
                 var clientCompanyUserSessionTemp = data;
                 localStorage.setItem('currentUser', JSON.stringify(clientCompanyUserSessionTemp));
                 localStorage.setItem('phoneUser', JSON.stringify(clientCompanyUserSessionTemp.phone));
@@ -254,9 +254,9 @@ var HomePage = (function () {
     HomePage.prototype.onSumbitFeedbackForm = function () {
         var _this = this;
         this.showFeedbackSavedSuccess = false;
-        console.log('on submit ');
-        console.log('on submit ' + this.feedbackForm + JSON.stringify(this.feedbackForm));
-        console.log('notes-- ' + this.feedbackForm.notes);
+        // console.log('on submit ');
+        // console.log('on submit ' + this.feedbackForm + JSON.stringify(this.feedbackForm) );
+        // console.log('notes-- ' + this.feedbackForm.notes);
         if (this.feedbackForm.notes
             && this.feedbackForm.feedbackMaster) {
             var clientComUserSession = this.getUserSession();
@@ -264,9 +264,9 @@ var HomePage = (function () {
             this.feedbackForm.clientCompanyUser = clientComUserSession;
             this.feedbackDataServiceProvider.saveFeedbackForUser(this.feedbackForm).subscribe(function (data) {
                 _this.showFeedbackSavedSuccess = true;
-                console.log(data);
+                // console.log(data);
                 var feedbackTemp = data;
-                console.log(feedbackTemp + ' ----------');
+                // console.log(feedbackTemp + ' ----------' );
                 _this.feedbackForm = new __WEBPACK_IMPORTED_MODULE_4__models_feedback__["a" /* Feedback */]();
                 _this.feedbackForm.notes = '';
                 _this.feedbackForm.feedbackMaster = null;
@@ -284,7 +284,7 @@ var HomePage = (function () {
     HomePage.prototype.getListFeedbackMasterList = function () {
         var _this = this;
         this.feedbackDataServiceProvider.getAllFeedbackMasterList().subscribe(function (data) {
-            console.log("feedbackMasterList -- " + data);
+            // console.log( "feedbackMasterList -- "  + data);
             _this.feedbackMasterList = data;
         });
     };
@@ -629,7 +629,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var FeedbackDataServiceProvider = (function () {
     function FeedbackDataServiceProvider(http) {
         this.http = http;
-        console.log('Hello FeedbackDataServiceProvider Provider');
+        // console.log('Hello FeedbackDataServiceProvider Provider');
     }
     FeedbackDataServiceProvider_1 = FeedbackDataServiceProvider;
     FeedbackDataServiceProvider.prototype.checkUserSessionService = function () {
