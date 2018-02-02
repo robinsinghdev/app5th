@@ -25687,7 +25687,7 @@ page-task-details .mob-task-list {
   color: #fff;
 }
 
-page-task-details .mob-task-list li {
+page-task-details .mob-task-list > li {
   border-radius: 8px;
   background: #162555;
   color: #fff;
@@ -25698,6 +25698,7 @@ page-task-details .mob-task-list li {
 
 page-task-details .mob-task-list .task-list-top {
   padding: 10px 20px;
+  display: table;
 }
 
 page-task-details .mob-task-list .task-title {
@@ -25713,18 +25714,31 @@ page-task-details .mob-task-list .task-list-top span.star {
   line-height: 20px;
 }
 
+page-task-details .mob-task-list .task-list-top .task-list-top-cell {
+  display: table-cell;
+}
+
 page-task-details .mob-task-list .task-list-top span.star.starred {
   color: #ffb300;
 }
 
 page-task-details .mob-task-list .task-list-top .task-cate {
-  background: #f6013c;
-  display: inline-block;
+  display: table-cell;
   vertical-align: top;
   margin: 0 15px;
+  padding: 0 10px;
+  width: 100%;
+  text-align: center;
+}
+
+page-task-details .mob-task-list .task-list-top .task-cate p {
+  vertical-align: top;
   color: #fff;
   border-radius: 5px;
+  background: #f6013c;
   padding: 5px 10px;
+  margin: 0;
+  font-size: 16px;
 }
 
 page-task-details .mob-task-list .task-list-top span.task-compl-action {
@@ -25733,6 +25747,11 @@ page-task-details .mob-task-list .task-list-top span.task-compl-action {
   height: 30px;
   float: right;
   border-radius: 10px;
+}
+
+page-task-details .mob-task-list .task-list-top span.task-compl-action.completed {
+  background: #ffd12a;
+  border-color: #ff6c25;
 }
 
 page-task-details .mob-task-list .task-info {
@@ -25790,6 +25809,7 @@ page-task-details .mob-task-list .task-users-list .assigned-by {
 
 page-task-details .mob-task-list .user-block {
   display: inline-block;
+  text-align: center;
 }
 
 page-task-details .mob-task-list .user-block span.photo {
@@ -25827,6 +25847,8 @@ page-task-details .mob-task-list .user-block span.name {
   text-align: center;
   font-size: 14px;
   margin: 3px 0 0 0;
+  max-width: 86px;
+  overflow: hidden;
 }
 
 page-task-details ul.mob-comment-list {
@@ -25950,6 +25972,16 @@ page-task-details .mob-comment-list .user-block {
   margin: 0;
 }
 
+page-task-details ul.subtask-list {
+  list-style: none;
+  margin: 0;
+  font-size: 16px;
+  -webkit-box-shadow: 0 0;
+  box-shadow: 0 0;
+  padding: 0 20px;
+  margin-bottom: 35px;
+}
+
 page-tasks ion-content {
   background: #e3e6e7 !important;
 }
@@ -25971,6 +26003,7 @@ page-tasks .mob-task-list li {
 
 page-tasks .mob-task-list .task-list-top {
   padding: 10px 20px;
+  display: table;
 }
 
 page-tasks .mob-task-list .task-title {
@@ -25984,6 +26017,11 @@ page-tasks .mob-task-list .task-list-top span.star {
   font-size: 25px;
   color: #5a5a5a;
   line-height: 20px;
+  display: inline-block;
+}
+
+page-tasks .mob-task-list .task-list-top .task-list-top-cell {
+  display: table-cell;
 }
 
 page-tasks .mob-task-list .task-list-top span.star.starred {
@@ -25991,25 +26029,35 @@ page-tasks .mob-task-list .task-list-top span.star.starred {
 }
 
 page-tasks .mob-task-list .task-list-top .task-cate {
-  background: #f6013c;
-  display: inline-block;
+  display: table-cell;
   vertical-align: top;
   margin: 0 15px;
+  padding: 0 10px;
+  width: 100%;
+  text-align: center;
+}
+
+page-tasks .mob-task-list .task-list-top .task-cate p {
+  vertical-align: top;
   color: #fff;
   border-radius: 5px;
+  background: #f6013c;
   padding: 5px 10px;
+  margin: 0;
+  font-size: 16px;
 }
 
 page-tasks .mob-task-list .task-list-top span.task-compl-action {
   border: 2px solid #c7c7c7;
   width: 30px;
   height: 30px;
-  float: right;
   border-radius: 10px;
+  display: inline-block;
 }
 
 page-tasks .mob-task-list .task-list-top span.task-compl-action.completed {
-  background: #000;
+  background: #ffd12a;
+  border-color: #ff6c25;
 }
 
 page-tasks .mob-task-list .task-info {
@@ -26065,6 +26113,7 @@ page-tasks .mob-task-list .task-users-list .assigned-by {
 
 page-tasks .mob-task-list .user-block {
   display: inline-block;
+  text-align: center;
 }
 
 page-tasks .mob-task-list .user-block span.photo {
@@ -26102,6 +26151,8 @@ page-tasks .mob-task-list .user-block span.name {
   text-align: center;
   font-size: 14px;
   margin: 3px 0 0 0;
+  max-width: 86px;
+  overflow: hidden;
 }
 
 page-tasks .mob-task-hdr {
@@ -26138,4 +26189,5 @@ page-tasks .mob-task-hdr p {
   margin: 0;
   line-height: 50px;
   font-size: 20px;
+  position: relative;
 }
