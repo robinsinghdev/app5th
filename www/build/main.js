@@ -1,74 +1,5 @@
 webpackJsonp([10],{
 
-/***/ 104:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CompaniesPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_companies_service_companies_service__ = __webpack_require__(168);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var CompaniesPage = (function () {
-    function CompaniesPage(navCtrl, navParams, companiesServiceProvider) {
-        var _this = this;
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.companiesServiceProvider = companiesServiceProvider;
-        this.companiesList = [];
-        this.searchQuery = '';
-        this.companiesServiceProvider.getAll().subscribe(function (data) {
-            _this.companiesList = data;
-            _this.initializeItems();
-        });
-    }
-    CompaniesPage.prototype.ionViewDidLoad = function () {
-        // console.log('ionViewDidLoad CompaniesPage');
-    };
-    CompaniesPage.prototype.initializeItems = function () {
-        var _this = this;
-        this.items = [];
-        this.companiesList.forEach(function (element) {
-            _this.items.push(element.name);
-        });
-    };
-    CompaniesPage.prototype.getItems = function (ev) {
-        // Reset items back to all of the items
-        this.initializeItems();
-        // set val to the value of the searchbar
-        var val = ev.target.value;
-        // if the value is an empty string don't filter the items
-        if (val && val.trim() != '') {
-            this.items = this.items.filter(function (item) {
-                return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
-            });
-        }
-    };
-    CompaniesPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-companies',template:/*ion-inline-start:"E:\eclipse_workspace\AppWorkspace2017\MISDeskCRM_HybridMobileApp\src\pages\companies\companies.html"*/'\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Companies</ion-title>\n    <button ion-button menuToggle right>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n  </ion-navbar>\n\n  <ion-toolbar>\n      <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-list>\n    <ion-item *ngFor="let item of items">\n      {{ item }}\n    </ion-item>\n  </ion-list>\n\n\n</ion-content>\n'/*ion-inline-end:"E:\eclipse_workspace\AppWorkspace2017\MISDeskCRM_HybridMobileApp\src\pages\companies\companies.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_companies_service_companies_service__["a" /* CompaniesServiceProvider */]])
-    ], CompaniesPage);
-    return CompaniesPage;
-}());
-
-//# sourceMappingURL=companies.js.map
-
-/***/ }),
-
 /***/ 105:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -76,6 +7,7 @@ var CompaniesPage = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContactFullDetailsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(14);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -87,20 +19,55 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var ContactFullDetailsPage = (function () {
-    function ContactFullDetailsPage(navCtrl, navParams) {
+    function ContactFullDetailsPage(navCtrl, navParams, formBuilder) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.formBuilder = formBuilder;
+        this.submitAttempt = false;
         this.selectedItem = navParams.get('item');
+        this.saveContactFormValidate();
     }
     ContactFullDetailsPage.prototype.ionViewDidLoad = function () {
         // console.log('ionViewDidLoad ContactFullDetailsPage');
     };
+    ContactFullDetailsPage.prototype.saveContactForm = function () {
+        this.submitAttempt = true;
+        // Call for save
+        if (this.contactsForm.valid) {
+            // console.log('validddddddd----');
+            alert('This functionality will be availabel at MISDesk CRM v2.34.0');
+        }
+        else {
+            // console.log('innnnnnnnvalidddddddd----');
+        }
+    };
+    ContactFullDetailsPage.prototype.saveContactFormValidate = function () {
+        var emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+        this.contactsForm = this.formBuilder.group({
+            "contactName": ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].maxLength(100),
+                    __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].pattern('[a-zA-Z ]*'), __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required])],
+            "designationStatus": ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].maxLength(100),
+                    __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].pattern('[a-zA-Z ]*')])],
+            "number1": ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].minLength(10), __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].maxLength(20),
+                    __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].pattern('[0-9 ]*'), __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required])],
+            "email1": ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].maxLength(100),
+                    __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].pattern(emailPattern), __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required])],
+            "number2": ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].minLength(8), __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].maxLength(100),
+                    __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].pattern('[0-9+ ]*')])],
+            "number3": ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].minLength(8), __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].maxLength(100),
+                    __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].pattern('[0-9+ ]*')])],
+            "contactNote": ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].compose([__WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].minLength(4), __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].maxLength(100),
+                    __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].pattern('[a-zA-Z ]*'), __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required])],
+        });
+    };
     ContactFullDetailsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-contact-full-details',template:/*ion-inline-start:"E:\eclipse_workspace\AppWorkspace2017\MISDeskCRM_HybridMobileApp\src\pages\contact-full-details\contact-full-details.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Contact Details</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <div>\n    <ion-item>\n      <ion-label color="primary">NAME</ion-label>\n      <ion-input placeholder="NAME"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label color="primary">COMPANY</ion-label>\n      <ion-input placeholder="COMPANY"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label color="primary">DESIGNATION</ion-label>\n      <ion-input placeholder="DESIGNATION"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label color="primary">MOBILE</ion-label>\n      <ion-input placeholder="MOBILE"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label color="primary">EMAIL</ion-label>\n      <ion-input placeholder="EMAIL"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label color="primary">TELEPHONE</ion-label>\n      <ion-input placeholder="TELEPHONE"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label color="primary">FAX</ion-label>\n      <ion-input placeholder="FAX"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-textarea placeholder="NOTES"></ion-textarea>\n    </ion-item>\n\n  </div>\n\n</ion-content>'/*ion-inline-end:"E:\eclipse_workspace\AppWorkspace2017\MISDeskCRM_HybridMobileApp\src\pages\contact-full-details\contact-full-details.html"*/,
+            selector: 'page-contact-full-details',template:/*ion-inline-start:"E:\eclipse_workspace\AppWorkspace2017\MISDeskCRM_HybridMobileApp\src\pages\contact-full-details\contact-full-details.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Contact Details</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n  <p>NOTE: This functionality will be available at MISDesk CRM v2.34.0</p>\n  <form [formGroup]="contactsForm">\n  \n    <div>\n      <ion-item>\n        <ion-label color="primary">NAME</ion-label>\n        <ion-input formControlName="contactName" placeholder="NAME"></ion-input>\n      </ion-item>\n\n      <ion-item *ngIf="!contactsForm.controls.contactName.valid  \n        && (contactsForm.controls.contactName.dirty || submitAttempt)">\n        <p>Please enter a valid data.</p>\n      </ion-item>\n\n      <ion-item>\n        <ion-label color="primary">COMPANY</ion-label>\n        <ion-input type="text" formControlName="contactName" placeholder="COMPANY"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label color="primary">DESIGNATION</ion-label>\n        <ion-input formControlName="designationStatus" placeholder="DESIGNATION"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label color="primary">MOBILE</ion-label>\n        <ion-input type="number" formControlName="number1" placeholder="MOBILE"></ion-input>\n      </ion-item>\n\n      <ion-item *ngIf="!contactsForm.controls.number1.valid  \n        && (contactsForm.controls.number1.dirty || submitAttempt)">\n        <p>Please enter a valid data.</p>\n      </ion-item>\n\n      <ion-item>\n        <ion-label color="primary">EMAIL</ion-label>\n        <ion-input type="email" formControlName="email1" placeholder="EMAIL"></ion-input>\n      </ion-item>\n\n      <ion-item *ngIf="!contactsForm.controls.email1.valid  \n        && (contactsForm.controls.email1.dirty || submitAttempt)">\n        <p>Please enter a valid data.</p>\n      </ion-item>\n\n      <ion-item>\n        <ion-label color="primary">TELEPHONE</ion-label>\n        <ion-input type="number" formControlName="number2" placeholder="TELEPHONE"></ion-input>\n      </ion-item>\n\n      <ion-item *ngIf="!contactsForm.controls.number2.valid  \n        && (contactsForm.controls.number2.dirty || submitAttempt)">\n        <p>Please enter a valid data.</p>\n      </ion-item>\n\n      <ion-item>\n        <ion-label color="primary">FAX</ion-label>\n        <ion-input type="number" formControlName="number3" placeholder="FAX"></ion-input>\n      </ion-item>\n\n      <ion-item *ngIf="!contactsForm.controls.number3.valid  \n        && (contactsForm.controls.number3.dirty || submitAttempt)">\n        <p>Please enter a valid data.</p>\n      </ion-item>\n\n      <ion-item>\n        <ion-textarea formControlName="contactNote" placeholder="NOTES"></ion-textarea>\n      </ion-item>\n\n      <ion-item *ngIf="!contactsForm.controls.contactNote.valid  \n        && (contactsForm.controls.contactNote.dirty || submitAttempt)">\n        <p>Please enter a valid data.</p>\n      </ion-item>\n\n      <button type="submit" \n        ion-button full color="primary" \n        class="" (click) = "saveContactForm();">SUBMIT</button>\n\n    </div>\n  </form>  \n\n</ion-content>'/*ion-inline-end:"E:\eclipse_workspace\AppWorkspace2017\MISDeskCRM_HybridMobileApp\src\pages\contact-full-details\contact-full-details.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */]])
     ], ContactFullDetailsPage);
     return ContactFullDetailsPage;
 }());
@@ -198,6 +165,9 @@ var ContactsPage = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_authentication_service_authentication_service__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__companies_companies__ = __webpack_require__(56);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -209,25 +179,77 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
+
+
 var LoginPage = (function () {
-    function LoginPage(navCtrl, navParams) {
+    function LoginPage(navCtrl, navParams, authService, formBuilder) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.authService = authService;
+        this.formBuilder = formBuilder;
+        this.loginModel = {};
+        this.submitAttempt = false;
+        this.createLoginForm();
     }
     LoginPage.prototype.ionViewDidLoad = function () {
         // console.log('ionViewDidLoad LoginPage');
+        var checkUserSessionFlag = this.authService.checkUserSessionService();
+        if (checkUserSessionFlag === true) {
+            // this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+            // root out without login to dashboard
+            // this.router.navigate(['/dashboard']); // TODO
+        }
+        else {
+            // reset login status
+            // this.authenticationService.logout();
+            // this.router.navigate(['/logout']);
+        }
+    };
+    LoginPage.prototype.createLoginForm = function () {
+        this.loginFormGroup = this.formBuilder.group({
+            username: ['', [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].email, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].minLength(5), __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].maxLength(150)]],
+            password: ['', [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].minLength(5), __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].maxLength(300)]],
+        });
+    };
+    LoginPage.prototype.login = function () {
+        var _this = this;
+        // const userToken = this.authService.getUserToken();
+        // console.log('userToken ---- ' + userToken);
+        this.submitAttempt = true;
+        // this.buildForm();
+        if (this.loginFormGroup.valid) {
+            // Show Spinner
+            // santosh.v@metworld.net
+            // this.openHomePage();
+            // let userDataT = {"userDetailsId":3,"firstName":null,"lastName":null,"fullName":null,"userRoleId":3,"userRoleName":"GROUP COMPANY ADMIN","userId":"santosh.v@metworld.net","emailId":null,"userHomePage":null,"userToken":"XZHgswWpNSbtX8LnOEklaw==","userModelId":null};
+            // localStorage.setItem('currentUser', JSON.stringify(userDataT));
+            this.authService.signIn(this.loginModel.username, this.loginModel.password)
+                .subscribe(function (data) {
+                // console.log('++++++++-------' + data);
+                localStorage.setItem('currentUser', JSON.stringify(data));
+                // this.router.navigate(['/dashboard']);
+                _this.openHomePage();
+            }, function (error) {
+                var cusErroJson = JSON.parse(error['_body']);
+                var customizedErrorMsg = cusErroJson.message + ': ' + cusErroJson.error.message;
+                if (error.status === 401) {
+                }
+                else {
+                }
+            });
+        }
+        else {
+        }
+    };
+    LoginPage.prototype.openHomePage = function () {
+        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_4__companies_companies__["a" /* CompaniesPage */]);
     };
     LoginPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-login',template:/*ion-inline-start:"E:\eclipse_workspace\AppWorkspace2017\MISDeskCRM_HybridMobileApp\src\pages\login\login.html"*/'<!--\n  Generated template for the LoginPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Login</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"E:\eclipse_workspace\AppWorkspace2017\MISDeskCRM_HybridMobileApp\src\pages\login\login.html"*/,
+            selector: 'page-login',template:/*ion-inline-start:"E:\eclipse_workspace\AppWorkspace2017\MISDeskCRM_HybridMobileApp\src\pages\login\login.html"*/'\n<ion-header>\n\n  <ion-navbar>\n    <ion-title> MISDesk CRM Login</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <div class="login-container">\n    <div style="text-align: center;">\n      \n      <img src="../assets/imgs/logo.png" width="150px">\n      <h4>MISDesk CRM Login</h4>\n      <hr>\n    </div>\n    \n    <form [formGroup]="loginFormGroup" class="">\n\n      <ion-item>\n        <ion-label color="primary">USERNAME</ion-label>\n        <ion-input \n          type="email" \n          formControlName="username" \n          [(ngModel)]="loginModel.username" \n          placeholder="NAME"></ion-input>\n\n      </ion-item>\n\n      <ion-item *ngIf="!loginFormGroup.controls.username.valid  \n        && (loginFormGroup.controls.username.dirty || submitAttempt)">\n        <p>Please enter a valid username.</p>\n      </ion-item>\n\n      <ion-item>\n        <ion-label color="primary">PASSWORD</ion-label>\n        <ion-input\n          type="password" \n          [(ngModel)]="loginModel.password" \n          formControlName="password" \n          placeholder="PASSWORD"></ion-input>\n\n      </ion-item>\n\n      <ion-item *ngIf="!loginFormGroup.controls.password.valid  \n        && (loginFormGroup.controls.password.dirty || submitAttempt)">\n        <p>Please enter a valid password.</p>\n      </ion-item>\n\n      <br/>\n        <button type="submit" \n        ion-button full color="primary" \n        class="" (click) = "login();">LOGIN</button>\n      \n    </form>\n  </div>\n\n</ion-content>\n'/*ion-inline-end:"E:\eclipse_workspace\AppWorkspace2017\MISDeskCRM_HybridMobileApp\src\pages\login\login.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_authentication_service_authentication_service__["a" /* AuthenticationServiceProvider */], __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */]])
     ], LoginPage);
     return LoginPage;
 }());
@@ -523,7 +545,7 @@ var TaskDetailsPage = (function () {
     };
     TaskDetailsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-task-details',template:/*ion-inline-start:"E:\eclipse_workspace\AppWorkspace2017\MISDeskCRM_HybridMobileApp\src\pages\task-details\task-details.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Task Details</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n  <div *ngIf="selectedItem">\n\n    <div class="mob-task-container">\n\n      <ul class="mob-task-list">\n        <li *ngIf="selectedItem">\n\n          <div class="task-list-top">\n            <div class="task-list-top-cell">\n              <span class="star starred" *ngIf="selectedItem.taskDetailsObj.isStarred === \'YES\'">\n                <ion-icon name="star"></ion-icon>\n              </span>\n              <span class="star" *ngIf="selectedItem.taskDetailsObj.isStarred === \'NO\'">\n                <ion-icon name="star"></ion-icon>\n              </span>\n            </div>\n\n            <div class="task-cate">\n              <p>{{selectedItem.taskDetailsObj.companyName}}</p>\n            </div>\n            <div class="task-list-top-cell">\n              <span class="task-compl-action completed" \n                *ngIf="selectedItem.taskDetailsObj.isCompleted === \'YES\'"></span>\n              <span class="task-compl-action"\n                *ngIf="selectedItem.taskDetailsObj.isCompleted === \'NO\'"></span>\n            </div>\n          </div>\n\n          <div class="task-title">{{selectedItem.taskDetailsObj.taskName}}</div>\n          <div class="task-info">\n            <span>\n              <ion-icon name="calendar"></ion-icon>\n              {{selectedItem.taskDetailsObj.startDate | date: \'dd MMM yyyy\'}}</span>\n            <span (click)=\'toggleSubtasksFn();\'>\n              <ion-icon name="git-pull-request"></ion-icon>\n              {{selectedItem.taskDetailsObj.subTasksCount}}</span>\n            <span>\n              <ion-icon name="chatbubbles"></ion-icon>{{selectedItem.taskDetailsObj.commentsCount}}</span>\n          </div>\n\n          <div class="task-detail-subtask" *ngIf="toggleSubtasksFlag">\n\n            <ul class="subtask-list">\n              <li *ngFor="let subTaskObj of selectedItem.taskDetailsObj.subTasksList">\n                <p>\n                  <input type="checkbox" hidden/> {{subTaskObj.name}}</p>\n              </li>\n            </ul>\n\n          </div>\n\n          <div class="task-users-list">\n            <div class="assigned-user">\n              <label>Assigned to</label>\n              <div class="user-block" *ngFor="let mappedUser of selectedItem.taskDetailsObj.mappedUserList">\n                <span class="photo">\n                  <span>\n                    <ion-icon name="person"></ion-icon>\n                  </span>\n                </span>\n                <span class="name">{{mappedUser.userFullName}}</span>\n              </div>\n            </div>\n            <div class="assigned-by" *ngFor="let mappedUser of selectedItem.taskDetailsObj.mappedUserList">\n              <div *ngIf="mappedUser.isMine === \'YESs\'">\n                <label>by</label>\n                <div class="user-block">\n                  <span class="photo">\n                    <span>\n                      <ion-icon name="person"></ion-icon>\n                    </span>\n                  </span>\n                  <span class="name">{{mappedUser.userFullName}}</span>\n                </div>\n              </div>\n            </div>\n          </div>\n\n        </li>\n\n      </ul>\n      <div class="mob-comments">\n        <ul class="mob-comment-list">\n          <!-- <li *ngIf="selectedItem.taskDetailsObj.taskCommentsList.length === 0" class="comment-by-me">\n              No comments\n            </li> -->\n          <li *ngFor="let subTasksObj of selectedItem.taskDetailsObj.taskCommentsList" class="comment-by-me">\n            <div class="comment-content">\n              <p class="comment-text">{{subTasksObj.name}}</p>\n              <p classs="date">\n                <ion-icon name="calendar"></ion-icon> {{subTasksObj.data}}</p>\n            </div>\n            <div class="user-block">\n              <span class="photo">\n                <span>\n                  <ion-icon name="person" role="img" class="icon icon-md ion-md-person" aria-label="person" ng-reflect-name="person"></ion-icon>\n                </span>\n              </span>\n              <p>{{subTasksObj.userFullName}}</p>\n            </div>\n          </li>\n        </ul>\n      </div>\n    </div>\n\n  </div>\n</ion-content>\n\n<ion-footer no-border>\n  <ion-toolbar>\n      <ion-item>\n          <ion-label color="primary" floating>Add Comments Here...</ion-label>\n          <ion-input></ion-input>\n        </ion-item>\n  </ion-toolbar>\n</ion-footer>\n\n'/*ion-inline-end:"E:\eclipse_workspace\AppWorkspace2017\MISDeskCRM_HybridMobileApp\src\pages\task-details\task-details.html"*/,
+            selector: 'page-task-details',template:/*ion-inline-start:"E:\eclipse_workspace\AppWorkspace2017\MISDeskCRM_HybridMobileApp\src\pages\task-details\task-details.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Task Details</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n  <div *ngIf="selectedItem">\n\n    <div class="mob-task-container">\n\n      <ul class="mob-task-list">\n        <li *ngIf="selectedItem">\n\n          <div class="task-list-top">\n            <div class="task-list-top-cell">\n              <span class="star starred" *ngIf="selectedItem.taskDetailsObj.isStarred === \'YES\'">\n                <ion-icon name="star"></ion-icon>\n              </span>\n              <span class="star" *ngIf="selectedItem.taskDetailsObj.isStarred === \'NO\'">\n                <ion-icon name="star"></ion-icon>\n              </span>\n            </div>\n\n            <div class="task-cate">\n              <p>{{selectedItem.taskDetailsObj.companyName}}</p>\n            </div>\n            <div class="task-list-top-cell">\n              <span class="task-compl-action completed" \n                *ngIf="selectedItem.taskDetailsObj.isCompleted === \'YES\'"></span>\n              <span class="task-compl-action"\n                *ngIf="selectedItem.taskDetailsObj.isCompleted === \'NO\'"></span>\n            </div>\n          </div>\n\n          <div class="task-title">{{selectedItem.taskDetailsObj.taskName}}</div>\n          <div class="task-info">\n            <span>\n              <ion-icon name="calendar"></ion-icon>\n              {{selectedItem.taskDetailsObj.startDate | date: \'dd MMM yyyy\'}}</span>\n            <span (click)=\'toggleSubtasksFn();\'>\n              <ion-icon name="git-pull-request"></ion-icon>\n              {{selectedItem.taskDetailsObj.subTasksCount}}</span>\n            <span>\n              <ion-icon name="chatbubbles"></ion-icon>{{selectedItem.taskDetailsObj.commentsCount}}</span>\n          </div>\n\n          <div class="task-detail-subtask" *ngIf="toggleSubtasksFlag">\n\n            <ul class="subtask-list">\n              <li *ngFor="let subTaskObj of selectedItem.taskDetailsObj.subTasksList">\n                <p>\n                  <input type="checkbox" hidden/> {{subTaskObj.name}}</p>\n              </li>\n            </ul>\n\n          </div>\n\n          <div class="task-users-list">\n            <div class="assigned-user">\n              <label>Assigned to</label>\n              <div class="user-block" *ngFor="let mappedUser of selectedItem.taskDetailsObj.mappedUserList">\n                <span class="photo">\n                  <span>\n                    <ion-icon name="person"></ion-icon>\n                  </span>\n                </span>\n                <span class="name">{{mappedUser.userFullName}}</span>\n              </div>\n            </div>\n            <div class="assigned-by" *ngFor="let mappedUser of selectedItem.taskDetailsObj.mappedUserList">\n              <div *ngIf="mappedUser.isMine === \'YESs\'">\n                <label>by</label>\n                <div class="user-block">\n                  <span class="photo">\n                    <span>\n                      <ion-icon name="person"></ion-icon>\n                    </span>\n                  </span>\n                  <span class="name">{{mappedUser.userFullName}}</span>\n                </div>\n              </div>\n            </div>\n          </div>\n\n        </li>\n\n      </ul>\n      <div class="mob-comments">\n        <ul class="mob-comment-list">\n          <!-- <li *ngIf="selectedItem.taskDetailsObj.taskCommentsList.length === 0" class="comment-by-me">\n              No comments\n            </li> -->\n          <li *ngFor="let subTasksObj of selectedItem.taskDetailsObj.taskCommentsList" class="comment-by-me">\n            <div class="comment-content">\n              <p class="comment-text">{{subTasksObj.name}}</p>\n              <p classs="date">\n                <ion-icon name="calendar"></ion-icon> {{subTasksObj.data}}</p>\n            </div>\n            <div class="user-block">\n              <span class="photo">\n                <span>\n                  <ion-icon name="person" role="img" class="icon icon-md ion-md-person" aria-label="person" ng-reflect-name="person"></ion-icon>\n                </span>\n              </span>\n              <p>{{subTasksObj.userFullName}}</p>\n            </div>\n          </li>\n        </ul>\n      </div>\n    </div>\n\n  </div>\n</ion-content>\n\n<!-- <ion-footer no-border>\n  <ion-toolbar>\n      <ion-item>\n        <ion-label color="primary" floating>Add Comments Here...</ion-label>\n        <ion-input></ion-input>\n      </ion-item>\n  </ion-toolbar>\n</ion-footer> -->\n\n'/*ion-inline-end:"E:\eclipse_workspace\AppWorkspace2017\MISDeskCRM_HybridMobileApp\src\pages\task-details\task-details.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
     ], TaskDetailsPage);
@@ -613,7 +635,7 @@ var TasksPage = (function () {
     };
     TasksPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-tasks',template:/*ion-inline-start:"E:\eclipse_workspace\AppWorkspace2017\MISDeskCRM_HybridMobileApp\src\pages\tasks\tasks.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Tasks</ion-title>\n    <button ion-button menuToggle right>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n  </ion-navbar>\n\n  <ion-toolbar>\n      <div class="mob-task-hdr">\n          <a href="#" class="arrow arrow-prev" (click)=\'getAllTaskForPrevDate();\'>\n            <</a>\n              <p>\n                <span>\n                  <ion-datetime displayFormat="DD MMM YYYY" min="2016" max="2020" \n                    (ionChange)="changeTaskDate(selectedTaskDate)" [(ngModel)]="selectedTaskDate"></ion-datetime>\n                </span>\n              </p>\n              <a href="#" class="arrow arrow-next" (click)=\'getAllTaskForNextDate();\'>></a>\n        </div>\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n  <ion-fab bottom right>\n      <button ion-fab color="danger" (click)=\'openTaskSaveUpdateDetails("");\'>\n        <ion-icon name="add"></ion-icon></button>\n  </ion-fab> \n\n  <div class="mob-task-container">\n    \n    <ul class="mob-task-list">\n      <li *ngIf="taskDetailsFormList.length === 0">\n        <div class="task-info">\n          <span>\n            No tasks\n          </span>\n        </div>\n\n      </li>\n      <li *ngFor="let obj of taskDetailsFormList" (click)=\'openTaskDetails(obj);\'>\n        <div class="task-list-top">\n          <div class="task-list-top-cell">\n            <span class="star starred" *ngIf="obj.taskDetailsObj.isStarred === \'YES\'">\n              <ion-icon name="star"></ion-icon>\n            </span>\n            <span class="star" *ngIf="obj.taskDetailsObj.isStarred === \'NO\'">\n              <ion-icon name="star"></ion-icon>\n            </span>\n          </div>\n\n          <div class="task-cate">\n            <p>{{obj.taskDetailsObj.companyName}}</p>\n          </div>\n          <div class="task-list-top-cell">\n            <span class="task-compl-action completed" *ngIf="obj.taskDetailsObj.isCompleted === \'YES\'"></span>\n            <span class="task-compl-action" *ngIf="obj.taskDetailsObj.isCompleted === \'NO\'"></span>\n          </div>\n        </div>\n        <div class="task-title">\n          {{obj.taskDetailsObj.taskName}}\n        </div>\n        <div class="task-info">\n          <span>\n            <ion-icon name="calendar"></ion-icon>\n            {{obj.taskDetailsObj.startDate | date: \'dd MMM yyyy\'}}\n          </span>\n          <span>\n            <ion-icon name="git-pull-request"></ion-icon>{{obj.taskDetailsObj.subTasksCount}}</span>\n          <span>\n            <ion-icon name="chatbubbles"></ion-icon>{{obj.taskDetailsObj.commentsCount}}</span>\n        </div>\n        <div class="task-users-list">\n          <div class="assigned-user">\n            <label>Assigned to</label>\n            <div class="user-block" *ngFor="let mappedUser of obj.taskDetailsObj.mappedUserList">\n              <span class="photo">\n                <span>\n                  <ion-icon name="person"></ion-icon>\n                </span>\n              </span>\n              <span class="name">{{mappedUser.userFullName}}</span>\n            </div>\n          </div>\n          <div class="assigned-by" *ngFor="let mappedUser of obj.taskDetailsObj.mappedUserList">\n            <div *ngIf="mappedUser.isMine === \'YESs\'">\n              <label>by</label>\n              <div class="user-block">\n                <span class="photo">\n                  <span>\n                    <ion-icon name="person"></ion-icon>\n                  </span>\n                </span>\n                <span class="name">{{mappedUser.userFullName}}</span>\n              </div>\n            </div>\n          </div>\n        </div>\n      </li>\n\n    </ul>\n  </div>\n\n</ion-content>'/*ion-inline-end:"E:\eclipse_workspace\AppWorkspace2017\MISDeskCRM_HybridMobileApp\src\pages\tasks\tasks.html"*/,
+            selector: 'page-tasks',template:/*ion-inline-start:"E:\eclipse_workspace\AppWorkspace2017\MISDeskCRM_HybridMobileApp\src\pages\tasks\tasks.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Tasks</ion-title>\n    <button ion-button menuToggle right>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n  </ion-navbar>\n\n  <ion-toolbar>\n      <div class="mob-task-hdr">\n          <a href="#" class="arrow arrow-prev" (click)=\'getAllTaskForPrevDate();\'>\n            <</a>\n              <p>\n                <span>\n                  <ion-datetime displayFormat="DD MMM YYYY" min="2016" max="2020" \n                    (ionChange)="changeTaskDate(selectedTaskDate)" [(ngModel)]="selectedTaskDate"></ion-datetime>\n                </span>\n              </p>\n              <a href="#" class="arrow arrow-next" (click)=\'getAllTaskForNextDate();\'>></a>\n        </div>\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n  <!-- <ion-fab bottom right>\n      <button ion-fab color="danger" (click)=\'openTaskSaveUpdateDetails("");\'>\n        <ion-icon name="add"></ion-icon></button>\n  </ion-fab>  -->\n\n  <div class="mob-task-container">\n    \n    <ul class="mob-task-list">\n      <li *ngIf="taskDetailsFormList && taskDetailsFormList.length === 0">\n        <div class="task-info">\n          <span>\n            No tasks\n          </span>\n        </div>\n\n      </li>\n      \n      <li *ngFor="let obj of taskDetailsFormList" (click)=\'openTaskDetails(obj);\'>\n        <div class="task-list-top">\n          <div class="task-list-top-cell">\n            <span class="star starred" *ngIf="obj.taskDetailsObj.isStarred === \'YES\'">\n              <ion-icon name="star"></ion-icon>\n            </span>\n            <span class="star" *ngIf="obj.taskDetailsObj.isStarred === \'NO\'">\n              <ion-icon name="star"></ion-icon>\n            </span>\n          </div>\n\n          <div class="task-cate">\n            <p>{{obj.taskDetailsObj.companyName}}</p>\n          </div>\n          <div class="task-list-top-cell">\n            <span class="task-compl-action completed" *ngIf="obj.taskDetailsObj.isCompleted === \'YES\'"></span>\n            <span class="task-compl-action" *ngIf="obj.taskDetailsObj.isCompleted === \'NO\'"></span>\n          </div>\n        </div>\n        <div class="task-title">\n          {{obj.taskDetailsObj.taskName}}\n        </div>\n        <div class="task-info">\n          <span>\n            <ion-icon name="calendar"></ion-icon>\n            {{obj.taskDetailsObj.startDate | date: \'dd MMM yyyy\'}}\n          </span>\n          <span>\n            <ion-icon name="git-pull-request"></ion-icon>{{obj.taskDetailsObj.subTasksCount}}</span>\n          <span>\n            <ion-icon name="chatbubbles"></ion-icon>{{obj.taskDetailsObj.commentsCount}}</span>\n        </div>\n        <div class="task-users-list">\n          <div class="assigned-user">\n            <label>Assigned to</label>\n            <div class="user-block" *ngFor="let mappedUser of obj.taskDetailsObj.mappedUserList">\n              <span class="photo">\n                <span>\n                  <ion-icon name="person"></ion-icon>\n                </span>\n              </span>\n              <span class="name">{{mappedUser.userFullName}}</span>\n            </div>\n          </div>\n          <div class="assigned-by" *ngFor="let mappedUser of obj.taskDetailsObj.mappedUserList">\n            <div *ngIf="mappedUser.isMine === \'YESs\'">\n              <label>by</label>\n              <div class="user-block">\n                <span class="photo">\n                  <span>\n                    <ion-icon name="person"></ion-icon>\n                  </span>\n                </span>\n                <span class="name">{{mappedUser.userFullName}}</span>\n              </div>\n            </div>\n          </div>\n        </div>\n      </li>\n\n    </ul>\n  </div>\n\n</ion-content>'/*ion-inline-end:"E:\eclipse_workspace\AppWorkspace2017\MISDeskCRM_HybridMobileApp\src\pages\tasks\tasks.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_2__providers_tasks_service_tasks_service__["a" /* TasksServiceProvider */]])
@@ -647,43 +669,43 @@ webpackEmptyAsyncContext.id = 126;
 
 var map = {
 	"../pages/companies/companies.module": [
-		418,
+		421,
 		9
 	],
 	"../pages/contact-full-details/contact-full-details.module": [
-		419,
+		422,
 		8
 	],
 	"../pages/contacts/contacts.module": [
-		420,
+		423,
 		7
 	],
 	"../pages/login/login.module": [
-		421,
+		424,
 		6
 	],
 	"../pages/orders/orders.module": [
-		422,
+		425,
 		5
 	],
 	"../pages/projects/projects.module": [
-		423,
+		426,
 		4
 	],
 	"../pages/services/services.module": [
-		424,
+		427,
 		3
 	],
 	"../pages/task-details-save-update/task-details-save-update.module": [
-		425,
+		428,
 		2
 	],
 	"../pages/task-details/task-details.module": [
-		426,
+		429,
 		1
 	],
 	"../pages/tasks/tasks.module": [
-		427,
+		430,
 		0
 	]
 };
@@ -710,8 +732,10 @@ module.exports = webpackAsyncContext;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CompaniesServiceProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__authentication_service_authentication_service__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__authentication_service_authentication_service__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Observable__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_Observable__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -725,6 +749,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var CompaniesServiceProvider = (function () {
     function CompaniesServiceProvider(http, authService) {
         this.http = http;
@@ -733,10 +758,20 @@ var CompaniesServiceProvider = (function () {
     }
     CompaniesServiceProvider_1 = CompaniesServiceProvider;
     CompaniesServiceProvider.prototype.getAll = function () {
-        var userToken = 'userToken'; // this.authService.getUserToken();
+        var userToken = this.authService.getUserToken();
+        // console.log('userToken ---- ' + userToken);
         var urlToCall = CompaniesServiceProvider_1.GET_ALL_DETAILS + '/' + userToken + '.do';
         return this.http.get(urlToCall)
             .map(function (res) { return res; });
+        // .catch(this.handleError);
+    };
+    CompaniesServiceProvider.prototype.handleError = function (error) {
+        var errorJson = error;
+        if (errorJson) {
+            console.error(errorJson);
+            return __WEBPACK_IMPORTED_MODULE_4_rxjs_Observable__["Observable"].throw('' || error);
+        }
+        return __WEBPACK_IMPORTED_MODULE_4_rxjs_Observable__["Observable"].throw(error);
     };
     CompaniesServiceProvider.GET_ALL_DETAILS = __WEBPACK_IMPORTED_MODULE_2__environments_environment__["a" /* environment */].apiUrl + '/mapp/api/companies/all';
     CompaniesServiceProvider = CompaniesServiceProvider_1 = __decorate([
@@ -758,8 +793,8 @@ var CompaniesServiceProvider = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContactsServiceProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__authentication_service_authentication_service__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__authentication_service_authentication_service__ = __webpack_require__(28);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -781,7 +816,8 @@ var ContactsServiceProvider = (function () {
     }
     ContactsServiceProvider_1 = ContactsServiceProvider;
     ContactsServiceProvider.prototype.getAll = function () {
-        var userToken = 'userToken'; // this.authService.getUserToken();
+        var userToken = this.authService.getUserToken();
+        // console.log('userToken ---- ' + userToken);
         var urlToCall = ContactsServiceProvider_1.GET_ALL_DETAILS + '/' + userToken + '.do';
         return this.http.get(urlToCall)
             .map(function (res) { return res; });
@@ -806,8 +842,8 @@ var ContactsServiceProvider = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrdersServiceProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__authentication_service_authentication_service__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__authentication_service_authentication_service__ = __webpack_require__(28);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -829,7 +865,8 @@ var OrdersServiceProvider = (function () {
     }
     OrdersServiceProvider_1 = OrdersServiceProvider;
     OrdersServiceProvider.prototype.getAll = function () {
-        var userToken = 'userToken'; // this.authService.getUserToken();
+        var userToken = this.authService.getUserToken();
+        // console.log('userToken ---- ' + userToken);
         var urlToCall = OrdersServiceProvider_1.GET_ALL_DETAILS + '/' + userToken + '.do';
         return this.http.get(urlToCall)
             .map(function (res) { return res; });
@@ -854,8 +891,8 @@ var OrdersServiceProvider = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProjectsServiceProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__authentication_service_authentication_service__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__authentication_service_authentication_service__ = __webpack_require__(28);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -877,7 +914,8 @@ var ProjectsServiceProvider = (function () {
     }
     ProjectsServiceProvider_1 = ProjectsServiceProvider;
     ProjectsServiceProvider.prototype.getAll = function () {
-        var userToken = 'userToken'; // this.authService.getUserToken();
+        var userToken = this.authService.getUserToken();
+        // console.log('userToken ---- ' + userToken);
         var urlToCall = ProjectsServiceProvider_1.GET_ALL_DETAILS + '/' + userToken + '.do';
         return this.http.get(urlToCall)
             .map(function (res) { return res; });
@@ -902,8 +940,8 @@ var ProjectsServiceProvider = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ServicesServiceProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__authentication_service_authentication_service__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__authentication_service_authentication_service__ = __webpack_require__(28);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -925,7 +963,8 @@ var ServicesServiceProvider = (function () {
     }
     ServicesServiceProvider_1 = ServicesServiceProvider;
     ServicesServiceProvider.prototype.getAll = function () {
-        var userToken = 'userToken'; // this.authService.getUserToken();
+        var userToken = this.authService.getUserToken();
+        // console.log('userToken ---- ' + userToken);
         var urlToCall = ServicesServiceProvider_1.GET_ALL_DETAILS + '/' + userToken + '.do';
         return this.http.get(urlToCall)
             .map(function (res) { return res; });
@@ -950,9 +989,10 @@ var ServicesServiceProvider = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TasksServiceProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(389);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(392);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__authentication_service_authentication_service__ = __webpack_require__(28);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -966,10 +1006,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 // import 'rxjs/add/operator/map';
 var TasksServiceProvider = (function () {
-    function TasksServiceProvider(http) {
+    function TasksServiceProvider(http, authService) {
         this.http = http;
+        this.authService = authService;
         // console.log('Hello TasksServiceProvider Provider');
     }
     TasksServiceProvider_1 = TasksServiceProvider;
@@ -980,7 +1022,8 @@ var TasksServiceProvider = (function () {
         var criteriaData = 'today';
         var startDateData = 'no';
         var endDateData = 'no';
-        var userToken = 'userToken'; // this.authService.getUserToken();
+        var userToken = this.authService.getUserToken();
+        // console.log('userToken ---- ' + userToken);
         var urlToCall = TasksServiceProvider_1.GET_ALL_DETAILS
             + '/' + userToken
             + '/' + uid
@@ -998,7 +1041,8 @@ var TasksServiceProvider = (function () {
         // criteriaData = 'today';
         // startDateData = 'no';
         endDateData = 'no';
-        var userToken = 'userToken'; // this.authService.getUserToken();
+        var userToken = this.authService.getUserToken();
+        // console.log('userToken ---- ' + userToken);
         var urlToCall = TasksServiceProvider_1.GET_ALL_DETAILS
             + '/' + userToken
             + '/' + uid
@@ -1013,13 +1057,161 @@ var TasksServiceProvider = (function () {
     TasksServiceProvider.GET_ALL_DETAILS = __WEBPACK_IMPORTED_MODULE_2__environments_environment__["a" /* environment */].apiUrl + '/mapp/api/task/v2/getAll';
     TasksServiceProvider = TasksServiceProvider_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_4__authentication_service_authentication_service__["a" /* AuthenticationServiceProvider */]])
     ], TasksServiceProvider);
     return TasksServiceProvider;
     var TasksServiceProvider_1;
 }());
 
 //# sourceMappingURL=tasks-service.js.map
+
+/***/ }),
+
+/***/ 28:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthenticationServiceProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__(32);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var AuthenticationServiceProvider = (function () {
+    function AuthenticationServiceProvider(http) {
+        this.http = http;
+        //  public navCtrl: NavController
+        // console.log('Hello AuthenticationServiceProvider Provider');
+    }
+    AuthenticationServiceProvider_1 = AuthenticationServiceProvider;
+    AuthenticationServiceProvider.prototype.openLoginPage = function () {
+        // this.navCtrl.setRoot(LoginPage);
+    };
+    AuthenticationServiceProvider.prototype.checkUserSessionService = function () {
+        var currentUser = localStorage.getItem('currentUser');
+        if (currentUser != null) {
+            var currentUserJson = JSON.parse(currentUser);
+            if (currentUserJson.phone !== '') {
+                return true;
+            }
+            else {
+                localStorage.removeItem('currentUser');
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
+    };
+    AuthenticationServiceProvider.prototype.getUserToken = function () {
+        var currentUser = localStorage.getItem('currentUser');
+        if (currentUser != null) {
+            var currentUserJson = JSON.parse(currentUser);
+            if (currentUserJson.userToken) {
+                return currentUserJson.userToken;
+            }
+            else {
+                // remove user from local storage to log user out
+                localStorage.removeItem('currentUser');
+                this.openLoginPage();
+                // this.router.navigate(['/login']);
+                return '';
+            }
+        }
+        else {
+            // this.router.navigate(['/login']);
+            // this.openLoginPage();
+            return '';
+            // return false;
+        }
+    };
+    AuthenticationServiceProvider.prototype.logoutService = function () {
+        localStorage.removeItem('currentUser');
+        // this.openLoginPage();
+    };
+    /**
+      * Check token for given user
+      * @param username
+      * @param token
+     */
+    AuthenticationServiceProvider.prototype.checkToken = function (username, token) {
+        var urlTemp = AuthenticationServiceProvider_1.TOKEN_VALID_URL + token + ".do";
+        return this.http.get(urlTemp)
+            .map(function (response) { return response.json(); });
+    };
+    /**
+        * Check token for given user
+        * @param username
+        * @param token
+       */
+    AuthenticationServiceProvider.prototype.checkTokenData = function (token) {
+        var urlTemp = AuthenticationServiceProvider_1.TOKEN_CHECK_URL + token;
+        return this.http.get(AuthenticationServiceProvider_1.TOKEN_CHECK_URL + token + ".do")
+            .map(function (response) {
+            // let userSession = response.json() as UserSessionDataForm;
+            var userSession = response.json();
+            localStorage.setItem('currentUser', JSON.stringify(userSession));
+        });
+    };
+    /**
+        * Fetches and saves token for given user
+        * @param username
+        * @param password
+        */
+    AuthenticationServiceProvider.prototype.signIn = function (username, password) {
+        var urlTemp = AuthenticationServiceProvider_1.SIGNIN_URL + username + '/' + password + ".do";
+        return this.http.get(urlTemp)
+            .map(function (res) { return res; });
+        // .map((response: Response) => {
+        // let userSession = response.json() as UserSessionDataForm;
+        // let userSession = response.json();
+        // console.log('++++++++-------' + userSession);
+        // localStorage.setItem('currentUser', JSON.stringify(userSession));
+        // this.reloadPage();
+        // });
+    };
+    AuthenticationServiceProvider.SIGNIN_URL = __WEBPACK_IMPORTED_MODULE_2__environments_environment__["a" /* environment */].apiUrl + '/security/loginByGet/';
+    AuthenticationServiceProvider.TOKEN_VALID_URL = __WEBPACK_IMPORTED_MODULE_2__environments_environment__["a" /* environment */].apiUrl + '/security/account/';
+    AuthenticationServiceProvider.TOKEN_CHECK_URL = __WEBPACK_IMPORTED_MODULE_2__environments_environment__["a" /* environment */].apiUrl + '/security/token/checkSession/';
+    AuthenticationServiceProvider.REFRESH_TOKEN_URL = __WEBPACK_IMPORTED_MODULE_2__environments_environment__["a" /* environment */].apiUrl + '/security/token/refresh/';
+    AuthenticationServiceProvider = AuthenticationServiceProvider_1 = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]])
+    ], AuthenticationServiceProvider);
+    return AuthenticationServiceProvider;
+    var AuthenticationServiceProvider_1;
+}());
+
+//# sourceMappingURL=authentication-service.js.map
+
+/***/ }),
+
+/***/ 32:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
+// The file contents for the current environment will overwrite these during build.
+// The build system defaults to the dev environment which uses `environment.ts`, but if you do
+// `ng build --env=prod` then `environment.prod.ts` will be used instead.
+// The list of which env maps to which file can be found in `.angular-cli.json`.
+var environment = {
+    // apiUrl: 'http://localhost:8080/MISDeskCRM',
+    apiUrl: 'http://192.168.1.28:8080/MISDeskCRM',
+    // apiUrl: 'http://misdesk.com/MISDeskCRM',
+    production: false
+};
+//# sourceMappingURL=environment.js.map
 
 /***/ }),
 
@@ -1072,89 +1264,30 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 34:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
-// The file contents for the current environment will overwrite these during build.
-// The build system defaults to the dev environment which uses `environment.ts`, but if you do
-// `ng build --env=prod` then `environment.prod.ts` will be used instead.
-// The list of which env maps to which file can be found in `.angular-cli.json`.
-var environment = {
-    // apiUrl: 'http://localhost:8080/MISDeskCRM',
-    // apiUrl: 'http://192.168.1.28:8080/MISDeskCRM',
-    apiUrl: 'http://misdesk.com/MISDeskCRM',
-    production: false
-};
-//# sourceMappingURL=environment.js.map
-
-/***/ }),
-
-/***/ 35:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthenticationServiceProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-/*
-  Generated class for the AuthenticationServiceProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
-var AuthenticationServiceProvider = (function () {
-    function AuthenticationServiceProvider(http) {
-        this.http = http;
-        // console.log('Hello AuthenticationServiceProvider Provider');
-    }
-    AuthenticationServiceProvider = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]])
-    ], AuthenticationServiceProvider);
-    return AuthenticationServiceProvider;
-}());
-
-//# sourceMappingURL=authentication-service.js.map
-
-/***/ }),
-
 /***/ 359:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(409);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(412);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_home_home__ = __webpack_require__(336);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_tasks_tasks__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_task_details_task_details__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_task_details_save_update_task_details_save_update__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_contacts_contacts__ = __webpack_require__(106);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_contact_full_details_contact_full_details__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_companies_companies__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_companies_companies__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_projects_projects__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_orders_orders__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_services_services__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_login_login__ = __webpack_require__(107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_status_bar__ = __webpack_require__(332);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_splash_screen__ = __webpack_require__(335);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__providers_authentication_service_authentication_service__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__providers_authentication_service_authentication_service__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__providers_companies_service_companies_service__ = __webpack_require__(168);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__providers_contacts_service_contacts_service__ = __webpack_require__(169);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__providers_orders_service_orders_service__ = __webpack_require__(170);
@@ -1266,7 +1399,7 @@ var AppModule = (function () {
 
 /***/ }),
 
-/***/ 391:
+/***/ 394:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -1523,11 +1656,11 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 391;
+webpackContext.id = 394;
 
 /***/ }),
 
-/***/ 409:
+/***/ 412:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1539,7 +1672,7 @@ webpackContext.id = 391;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(336);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_tasks_tasks__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_contacts_contacts__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_companies_companies__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_companies_companies__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_projects_projects__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_orders_orders__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_services_services__ = __webpack_require__(110);
@@ -1570,7 +1703,7 @@ var MyApp = (function () {
         this.platform = platform;
         this.statusBar = statusBar;
         this.splashScreen = splashScreen;
-        this.rootPage = __WEBPACK_IMPORTED_MODULE_6__pages_contacts_contacts__["a" /* ContactsPage */];
+        this.rootPage = __WEBPACK_IMPORTED_MODULE_11__pages_login_login__["a" /* LoginPage */];
         this.initializeApp();
         // used for an example of ngFor and navigation
         this.pages = [
@@ -1581,7 +1714,6 @@ var MyApp = (function () {
             { title: 'Projects', component: __WEBPACK_IMPORTED_MODULE_8__pages_projects_projects__["a" /* ProjectsPage */] },
             { title: 'Orders', component: __WEBPACK_IMPORTED_MODULE_9__pages_orders_orders__["a" /* OrdersPage */] },
             { title: 'Services', component: __WEBPACK_IMPORTED_MODULE_10__pages_services_services__["a" /* ServicesPage */] },
-            { title: 'LoginPage', component: __WEBPACK_IMPORTED_MODULE_11__pages_login_login__["a" /* LoginPage */] }
         ];
     }
     MyApp.prototype.initializeApp = function () {
@@ -1598,12 +1730,16 @@ var MyApp = (function () {
         // we wouldn't want the back button to show in this scenario
         this.nav.setRoot(page.component);
     };
+    MyApp.prototype.logoutMainFn = function () {
+        localStorage.removeItem('currentUser');
+        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_11__pages_login_login__["a" /* LoginPage */]);
+    };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Nav */]),
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Nav */])
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"E:\eclipse_workspace\AppWorkspace2017\MISDeskCRM_HybridMobileApp\src\app\app.html"*/'<ion-menu [content]="content">\n  <ion-header>\n    <ion-toolbar>\n      <ion-title>Menu</ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content>\n    <ion-list>\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n        {{p.title}}\n      </button>\n    </ion-list>\n  </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"E:\eclipse_workspace\AppWorkspace2017\MISDeskCRM_HybridMobileApp\src\app\app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"E:\eclipse_workspace\AppWorkspace2017\MISDeskCRM_HybridMobileApp\src\app\app.html"*/'<ion-menu [content]="content">\n  <ion-header>\n    <ion-toolbar>\n      <ion-title>Menu</ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content>\n    <ion-list>\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n        {{p.title}}\n      </button>\n      <button menuClose ion-item (click)="logoutMainFn()">\n        Logout\n      </button>\n    </ion-list>\n  </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"E:\eclipse_workspace\AppWorkspace2017\MISDeskCRM_HybridMobileApp\src\app\app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);
@@ -1611,6 +1747,78 @@ var MyApp = (function () {
 }());
 
 //# sourceMappingURL=app.component.js.map
+
+/***/ }),
+
+/***/ 56:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CompaniesPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_companies_service_companies_service__ = __webpack_require__(168);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__ = __webpack_require__(389);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var CompaniesPage = (function () {
+    function CompaniesPage(navCtrl, navParams, companiesServiceProvider) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.companiesServiceProvider = companiesServiceProvider;
+        this.companiesList = [];
+        this.searchQuery = '';
+        this.companiesServiceProvider.getAll().subscribe(function (data) {
+            _this.companiesList = data;
+            _this.initializeItems();
+        });
+    }
+    CompaniesPage.prototype.ionViewDidLoad = function () {
+        // console.log('ionViewDidLoad CompaniesPage');
+    };
+    CompaniesPage.prototype.initializeItems = function () {
+        var _this = this;
+        this.items = [];
+        this.companiesList.forEach(function (element) {
+            _this.items.push(element.name);
+        });
+    };
+    CompaniesPage.prototype.getItems = function (ev) {
+        // Reset items back to all of the items
+        this.initializeItems();
+        // set val to the value of the searchbar
+        var val = ev.target.value;
+        // if the value is an empty string don't filter the items
+        if (val && val.trim() != '') {
+            this.items = this.items.filter(function (item) {
+                return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
+            });
+        }
+    };
+    CompaniesPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-companies',template:/*ion-inline-start:"E:\eclipse_workspace\AppWorkspace2017\MISDeskCRM_HybridMobileApp\src\pages\companies\companies.html"*/'\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Companies</ion-title>\n    <button ion-button menuToggle right>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n  </ion-navbar>\n\n  <ion-toolbar>\n      <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-list>\n    <ion-item *ngFor="let item of items">\n      {{ item }}\n    </ion-item>\n  </ion-list>\n\n\n</ion-content>\n'/*ion-inline-end:"E:\eclipse_workspace\AppWorkspace2017\MISDeskCRM_HybridMobileApp\src\pages\companies\companies.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_companies_service_companies_service__["a" /* CompaniesServiceProvider */]])
+    ], CompaniesPage);
+    return CompaniesPage;
+}());
+
+//# sourceMappingURL=companies.js.map
 
 /***/ })
 
