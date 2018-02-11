@@ -1207,8 +1207,8 @@ var AuthenticationServiceProvider = (function () {
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 var environment = {
     // apiUrl: 'http://localhost:8080/MISDeskCRM',
-    apiUrl: 'http://192.168.1.28:8080/MISDeskCRM',
-    // apiUrl: 'http://misdesk.com/MISDeskCRM',
+    // apiUrl: 'http://192.168.1.28:8080/MISDeskCRM',
+    apiUrl: 'http://misdesk.com/MISDeskCRM',
     production: false
 };
 //# sourceMappingURL=environment.js.map
