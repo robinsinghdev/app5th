@@ -1,14 +1,14 @@
 webpackJsonp([3],{
 
-/***/ 431:
+/***/ 446:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ServicesPageModule", function() { return ServicesPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TaskDetailsSaveUpdatePageModule", function() { return TaskDetailsSaveUpdatePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__task_details_save_update__ = __webpack_require__(123);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,23 +18,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var ServicesPageModule = (function () {
-    function ServicesPageModule() {
+var TaskDetailsSaveUpdatePageModule = (function () {
+    function TaskDetailsSaveUpdatePageModule() {
     }
-    ServicesPageModule = __decorate([
+    TaskDetailsSaveUpdatePageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__services__["a" /* ServicesPage */],
+                __WEBPACK_IMPORTED_MODULE_2__task_details_save_update__["a" /* TaskDetailsSaveUpdatePage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__services__["a" /* ServicesPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__task_details_save_update__["a" /* TaskDetailsSaveUpdatePage */]),
             ],
         })
-    ], ServicesPageModule);
-    return ServicesPageModule;
+    ], TaskDetailsSaveUpdatePageModule);
+    return TaskDetailsSaveUpdatePageModule;
 }());
 
-//# sourceMappingURL=services.module.js.map
+//# sourceMappingURL=task-details-save-update.module.js.map
 
 /***/ })
 
