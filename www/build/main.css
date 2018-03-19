@@ -30542,6 +30542,19 @@ ion-toast.warning .toast-wrapper {
   background: #ffae42;
 }
 
+strong.color-primary {
+  color: #5a96ff;
+  font-weight: 400;
+}
+
+.error-msg-para {
+  color: #f53d3d !important;
+}
+
+page-company-save-update .invalid .item-inner {
+  border: 2px solid #ea6153;
+}
+
 page-task-details .mob-task-list {
   list-style: none;
   margin: 0;

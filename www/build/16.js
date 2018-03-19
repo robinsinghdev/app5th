@@ -1,14 +1,14 @@
 webpackJsonp([16],{
 
-/***/ 432:
+/***/ 434:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CompaniesPageModule", function() { return CompaniesPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CompanyDetailsPageModule", function() { return CompanyDetailsPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__companies__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__company_details__ = __webpack_require__(115);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,23 +18,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var CompaniesPageModule = (function () {
-    function CompaniesPageModule() {
+var CompanyDetailsPageModule = (function () {
+    function CompanyDetailsPageModule() {
     }
-    CompaniesPageModule = __decorate([
+    CompanyDetailsPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__companies__["a" /* CompaniesPage */],
+                __WEBPACK_IMPORTED_MODULE_2__company_details__["a" /* CompanyDetailsPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__companies__["a" /* CompaniesPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__company_details__["a" /* CompanyDetailsPage */]),
             ],
         })
-    ], CompaniesPageModule);
-    return CompaniesPageModule;
+    ], CompanyDetailsPageModule);
+    return CompanyDetailsPageModule;
 }());
 
-//# sourceMappingURL=companies.module.js.map
+//# sourceMappingURL=company-details.module.js.map
 
 /***/ })
 
