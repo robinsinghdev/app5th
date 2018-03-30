@@ -797,9 +797,9 @@ var CompaniesPageModule = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
 var environment = {
-    apiUrl: 'http://192.168.1.28:8080/MISDeskCRM',
+    // apiUrl: 'http://192.168.1.28:8080/MISDeskCRM', // DEV
     // apiUrl: 'http://misdesk.com/MISDeskCRM',// QA
-    // apiUrl: 'http://misdesk.com',// PROD
+    apiUrl: 'http://misdesk.com',
     production: false
 };
 //# sourceMappingURL=environment.js.map
@@ -1562,6 +1562,9 @@ var TasksServiceProvider = (function () {
         endDateData = 'no';
         var userToken = this.authService.getUserToken();
         // console.log('userToken ---- ' + userToken);
+        if (!userToken) {
+            userToken = "no";
+        }
         var urlToCall = TasksServiceProvider_1.GET_ALL_DETAILS
             + '/' + userToken
             + '/' + uid
@@ -2355,15 +2358,7 @@ var MyApp = (function () {
         this.userRoleId = 0;
         this.initializeApp();
         // used for an example of ngFor and navigation
-        this.pages = [
-            { title: 'Companies', component: __WEBPACK_IMPORTED_MODULE_6__pages_companies_companies__["a" /* CompaniesPage */] },
-            { title: 'Contacts', component: __WEBPACK_IMPORTED_MODULE_5__pages_contacts_contacts__["a" /* ContactsPage */] },
-            { title: 'Tasks', component: __WEBPACK_IMPORTED_MODULE_4__pages_tasks_tasks__["a" /* TasksPage */] },
-            { title: 'Projects', component: __WEBPACK_IMPORTED_MODULE_7__pages_projects_projects__["a" /* ProjectsPage */] },
-            { title: 'Orders', component: __WEBPACK_IMPORTED_MODULE_8__pages_orders_orders__["a" /* OrdersPage */] },
-            { title: 'Services', component: __WEBPACK_IMPORTED_MODULE_9__pages_services_services__["a" /* ServicesPage */] },
-            { title: 'Notifications', component: __WEBPACK_IMPORTED_MODULE_11__pages_notifications_notifications__["a" /* NotificationsPage */] },
-        ];
+        this.pages = [];
     }
     MyApp.prototype.initializeApp = function () {
         var _this = this;
@@ -2375,11 +2370,29 @@ var MyApp = (function () {
         });
     };
     MyApp.prototype.menuOpened = function () {
+        this.pages = [];
         var currentUserJson = this.authService.getUserDetails();
-        this.userFullName = currentUserJson.fullName;
-        this.userEmail = currentUserJson.userId;
-        this.userRoleName = currentUserJson.userRoleName;
-        this.userRoleId = currentUserJson.userRoleId;
+        if (currentUserJson) {
+            this.userFullName = currentUserJson.fullName;
+            this.userEmail = currentUserJson.userId;
+            this.userRoleName = currentUserJson.userRoleName;
+            this.userRoleId = currentUserJson.userRoleId;
+            this.pages = [
+                { title: 'Companies', component: __WEBPACK_IMPORTED_MODULE_6__pages_companies_companies__["a" /* CompaniesPage */] },
+                { title: 'Contacts', component: __WEBPACK_IMPORTED_MODULE_5__pages_contacts_contacts__["a" /* ContactsPage */] },
+                { title: 'Tasks', component: __WEBPACK_IMPORTED_MODULE_4__pages_tasks_tasks__["a" /* TasksPage */] },
+                { title: 'Projects', component: __WEBPACK_IMPORTED_MODULE_7__pages_projects_projects__["a" /* ProjectsPage */] },
+                { title: 'Orders', component: __WEBPACK_IMPORTED_MODULE_8__pages_orders_orders__["a" /* OrdersPage */] },
+                { title: 'Services', component: __WEBPACK_IMPORTED_MODULE_9__pages_services_services__["a" /* ServicesPage */] },
+                { title: 'Notifications', component: __WEBPACK_IMPORTED_MODULE_11__pages_notifications_notifications__["a" /* NotificationsPage */] },
+            ];
+        }
+        else {
+            this.userFullName = '';
+            this.userEmail = '';
+            this.userRoleName = '';
+            this.userRoleId = 0;
+        }
     };
     MyApp.prototype.openPage = function (page) {
         // Reset the content nav to have just this page
@@ -2409,6 +2422,11 @@ var MyApp = (function () {
                         localStorage.removeItem('misMobUser');
                         // Open Loginpage
                         _this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_10__pages_login_login__["a" /* LoginPage */]);
+                        _this.pages = [];
+                        _this.userFullName = '';
+                        _this.userEmail = '';
+                        _this.userRoleName = '';
+                        _this.userRoleId = 0;
                         _this.authService.showMessageToastFn('Logged out successfully.', 'success');
                     }
                 }
@@ -2421,7 +2439,7 @@ var MyApp = (function () {
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */])
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"E:\eclipse_workspace\AppWorkspace2017\MISDeskCRM_HybridMobileApp\src\app\app.html"*/'<ion-menu [content]="content" (ionOpen)="menuOpened();" side="right">\n  <ion-header>\n    <ion-toolbar color="crmmagentalight">\n      <ion-title>\n        MISDesk CRM\n      </ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content>\n    \n    <ion-list>\n      <ion-list-header color="crmmagentalight" text-uppercase>\n          <ion-icon name="person" item-start></ion-icon>\n          {{userFullName}}\n          <br>\n          {{userRoleName}}\n          \n      </ion-list-header>\n      <button menuClose ion-item detail-push *ngFor="let p of pages" (click)="openPage(p)">\n        {{p.title}}\n      </button>\n      \n      <button menuClose ion-item detail-push (click)="logoutMainFn()">\n        Logout\n        <ion-icon name="log-out" item-end></ion-icon>\n      </button>\n    </ion-list>\n  </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"E:\eclipse_workspace\AppWorkspace2017\MISDeskCRM_HybridMobileApp\src\app\app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"E:\eclipse_workspace\AppWorkspace2017\MISDeskCRM_HybridMobileApp\src\app\app.html"*/'<ion-menu [content]="content" (ionOpen)="menuOpened();" side="right" swipeEnabled="false" >\n  <ion-header>\n    <ion-toolbar color="crmmagentalight">\n      <ion-title>\n        MISDesk CRM\n      </ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content>\n    \n    <!-- *ngIf="userFullName" -->\n    <ion-list >\n      <ion-list-header color="crmmagentalight" text-uppercase>\n          <ion-icon name="person" item-start></ion-icon>\n          {{userFullName}}\n          <br>\n          {{userRoleName}}\n          \n      </ion-list-header>\n      <button menuClose ion-item detail-push *ngFor="let p of pages" (click)="openPage(p)">\n        {{p.title}}\n      </button>\n      \n      <button menuClose ion-item detail-push (click)="logoutMainFn()">\n        Logout\n        <ion-icon name="log-out" item-end></ion-icon>\n      </button>\n    </ion-list>\n  </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"E:\eclipse_workspace\AppWorkspace2017\MISDeskCRM_HybridMobileApp\src\app\app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */],
             __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */],
