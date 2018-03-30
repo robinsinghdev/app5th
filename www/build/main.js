@@ -797,9 +797,9 @@ var CompaniesPageModule = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
 var environment = {
-    // apiUrl: 'http://192.168.1.28:8080/MISDeskCRM', // DEV
+    apiUrl: 'http://192.168.1.28:8080/MISDeskCRM',
     // apiUrl: 'http://misdesk.com/MISDeskCRM',// QA
-    apiUrl: 'http://misdesk.com',
+    // apiUrl: 'http://misdesk.com',// PROD
     production: false
 };
 //# sourceMappingURL=environment.js.map
